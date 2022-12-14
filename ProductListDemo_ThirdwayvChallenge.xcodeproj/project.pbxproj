@@ -27,6 +27,7 @@
 		258AFE062949F2DF006C43CD /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258AFE052949F2DF006C43CD /* Coordinator.swift */; };
 		258AFE082949F314006C43CD /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258AFE072949F314006C43CD /* AppCoordinator.swift */; };
 		258AFE0A2949F331006C43CD /* ProductCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258AFE092949F331006C43CD /* ProductCoordinator.swift */; };
+		258AFE0D294A034E006C43CD /* PinterestLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258AFE0C294A034E006C43CD /* PinterestLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		258AFE052949F2DF006C43CD /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		258AFE072949F314006C43CD /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		258AFE092949F331006C43CD /* ProductCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCoordinator.swift; sourceTree = "<group>"; };
+		258AFE0C294A034E006C43CD /* PinterestLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinterestLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 				258AFDCF2949D215006C43CD /* Delegate */,
 				258AFDD02949D238006C43CD /* Utilities */,
 				258AFE042949F2D5006C43CD /* Coordinator */,
+				258AFE0E294A170F006C43CD /* Customs */,
 				258AFDD12949D24A006C43CD /* Scenes */,
 			);
 			path = ProductListDemo_ThirdwayvChallenge;
@@ -246,6 +249,22 @@
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
+		258AFE0B294A032F006C43CD /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				258AFE0C294A034E006C43CD /* PinterestLayout.swift */,
+			);
+			path = Layouts;
+			sourceTree = "<group>";
+		};
+		258AFE0E294A170F006C43CD /* Customs */ = {
+			isa = PBXGroup;
+			children = (
+				258AFE0B294A032F006C43CD /* Layouts */,
+			);
+			path = Customs;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -333,6 +352,7 @@
 				258AFDFC2949EB17006C43CD /* ProductDetailsViewModelType.swift in Sources */,
 				258AFDEC2949D856006C43CD /* PoductsCollectionViewCell.swift in Sources */,
 				258AFDBE2949D1D7006C43CD /* SceneDelegate.swift in Sources */,
+				258AFE0D294A034E006C43CD /* PinterestLayout.swift in Sources */,
 				258AFDD72949D295006C43CD /* ProductModel.swift in Sources */,
 				258AFDDD2949D2C2006C43CD /* ProductsViewController.swift in Sources */,
 				258AFDFE2949EB20006C43CD /* ProductDetailsViewModel.swift in Sources */,

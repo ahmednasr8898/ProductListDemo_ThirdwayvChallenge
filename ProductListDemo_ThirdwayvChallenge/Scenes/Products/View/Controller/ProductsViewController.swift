@@ -31,6 +31,9 @@ class ProductsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let layout = productsCollectionView?.collectionViewLayout as? PinterestLayout {
+          layout.delegate = self
+        }
         bindToProductsData()
         setupCollectionView()
     }
@@ -100,7 +103,6 @@ extension ProductsViewController: UICollectionViewDelegate, UICollectionViewData
 extension ProductsViewController {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PoductsCollectionViewCell.Identifier, for: indexPath) as! PoductsCollectionViewCell
-        
         cell.Configuration(data: viewModel.getProductItemCell(indexPath: indexPath))
         return cell
     }
@@ -111,30 +113,32 @@ extension ProductsViewController {
 //
 extension ProductsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let heightOfImage = CGFloat(viewModel.getProductItemCell(indexPath: indexPath).image?.height ?? 0)
-        let heightOfCell = heightOfImage + 100
-        
-        return CGSize(width: self.view.frame.width * 0.481 , height: heightOfCell)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        let itemSize = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right )) / 2
+        return CGSize(width: itemSize, height: itemSize)
     }
 }
 
+//MARK: - confirm PinterestLayout Delegate -
+//
+extension ProductsViewController: PinterestLayoutDelegate {
+    func collectionView( _ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
+        
+        let width = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right)) / 2
+        let productDescription = viewModel.getProductItemCell(indexPath: indexPath).productDescription
+        
+        let productDescriptionHeight = productDescription?.heightWithConstrainedWidth(width: width, font: .systemFont(ofSize: 16))
+        
+        let height = CGFloat(viewModel.getProductItemCell(indexPath: indexPath).image?.height ?? 0) + productDescriptionHeight! + 100
+        return  height
+    }
+}
 
-//MARK: - did select item -
+//MARK: - did selected item -
 //
 extension ProductsViewController {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         coordinator?.showProductDetails(product: viewModel.getProductItemCell(indexPath: indexPath))
     }
 }
+
+

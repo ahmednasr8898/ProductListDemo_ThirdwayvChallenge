@@ -9,9 +9,10 @@ import UIKit
 import UIStyle
 
 class PoductsCollectionViewCell: UICollectionViewCell {
-
+    
     //MARK: - outlets
     //
+    @IBOutlet weak var subView: UIView!
     @IBOutlet weak var productImageView: UIImageView!
     @IBOutlet weak var heightOfProductImageViewConstraint: NSLayoutConstraint!
     @IBOutlet weak var productPriceLabel: UILabel!
@@ -26,14 +27,24 @@ class PoductsCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        setupDesignCell()
+    }
+    
+    private func setupDesignCell() {
+        subView.layer.borderWidth = 0.8
+        subView.layer.borderColor = UIColor.gray.cgColor
     }
     
     func Configuration(data: ProductModel) {
+        ConfigurationImageView(data: data)
+        productPriceLabel.text = "\(data.price ?? 0) $"
+        ProductDescriptionLabel.text = data.productDescription
+    }
+    
+    private func ConfigurationImageView(data: ProductModel) {
         guard let url = data.image?.url else { return }
         productImageView.downloaded(from: url)
         heightOfProductImageViewConstraint.constant = CGFloat(data.image?.height ?? 0)
-        productPriceLabel.text = "\(data.price ?? 0) $"
-        ProductDescriptionLabel.text = data.productDescription
     }
 }
 
