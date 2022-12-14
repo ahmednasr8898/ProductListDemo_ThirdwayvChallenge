@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import UIStyle
 
 class ProductDetailsViewController: UIViewController {
 

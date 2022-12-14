@@ -9,11 +9,11 @@ import UIKit
 
 //MARK: - custom app colors
 //
-extension SystemDesign {
+public extension SystemDesign {
     enum AppColors: String {
         case primary
         
-        var color: UIColor {
+        public var color: UIColor {
             return UIColor(named: self.rawValue) ?? UIColor()
         }
     }

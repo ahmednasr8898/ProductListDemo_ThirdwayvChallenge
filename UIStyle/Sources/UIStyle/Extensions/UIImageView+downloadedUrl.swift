@@ -1,6 +1,6 @@
 //
-//  UIImageView.swift
-//  ProductListDemo_ThirdwayvChallenge
+//  File.swift
+//  
 //
 //  Created by Semicolon on 14/12/2022.
 //
@@ -22,7 +22,12 @@ extension UIImageView {
             }
         }.resume()
     }
-    func downloaded(from link: String, contentMode mode: ContentMode = .scaleAspectFit) {
+    
+    /// load url into imag
+    /// - Parameters:
+    ///   - url: string url form serveice
+    ///   - usage: imageview.downloaded(your_image_url)
+    public func downloaded(from link: String, contentMode mode: ContentMode = .scaleAspectFit) {
         guard let url = URL(string: link) else { return }
         downloaded(from: url, contentMode: mode)
     }

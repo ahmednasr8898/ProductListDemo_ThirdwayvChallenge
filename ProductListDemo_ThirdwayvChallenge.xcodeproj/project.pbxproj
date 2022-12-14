@@ -20,13 +20,10 @@
 		258AFDEB2949D856006C43CD /* PoductsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 258AFDE92949D855006C43CD /* PoductsCollectionViewCell.xib */; };
 		258AFDEC2949D856006C43CD /* PoductsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258AFDEA2949D856006C43CD /* PoductsCollectionViewCell.swift */; };
 		258AFDEE2949D905006C43CD /* products.json in Resources */ = {isa = PBXBuildFile; fileRef = 258AFDED2949D905006C43CD /* products.json */; };
-		258AFDF12949DE8D006C43CD /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258AFDF02949DE8D006C43CD /* UIImageView.swift */; };
 		258AFDF52949EADC006C43CD /* ProductDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258AFDF32949EADC006C43CD /* ProductDetailsViewController.swift */; };
 		258AFDF62949EADC006C43CD /* ProductDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 258AFDF42949EADC006C43CD /* ProductDetailsViewController.xib */; };
 		258AFDFC2949EB17006C43CD /* ProductDetailsViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258AFDFB2949EB17006C43CD /* ProductDetailsViewModelType.swift */; };
 		258AFDFE2949EB20006C43CD /* ProductDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258AFDFD2949EB20006C43CD /* ProductDetailsViewModel.swift */; };
-		258AFE012949F0D3006C43CD /* SystemDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258AFE002949F0D3006C43CD /* SystemDesign.swift */; };
-		258AFE032949F0EB006C43CD /* SystemDesign+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258AFE022949F0EB006C43CD /* SystemDesign+Colors.swift */; };
 		258AFE062949F2DF006C43CD /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258AFE052949F2DF006C43CD /* Coordinator.swift */; };
 		258AFE082949F314006C43CD /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258AFE072949F314006C43CD /* AppCoordinator.swift */; };
 		258AFE0A2949F331006C43CD /* ProductCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258AFE092949F331006C43CD /* ProductCoordinator.swift */; };
@@ -48,13 +45,10 @@
 		258AFDE92949D855006C43CD /* PoductsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PoductsCollectionViewCell.xib; sourceTree = "<group>"; };
 		258AFDEA2949D856006C43CD /* PoductsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoductsCollectionViewCell.swift; sourceTree = "<group>"; };
 		258AFDED2949D905006C43CD /* products.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = products.json; sourceTree = "<group>"; };
-		258AFDF02949DE8D006C43CD /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		258AFDF32949EADC006C43CD /* ProductDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewController.swift; sourceTree = "<group>"; };
 		258AFDF42949EADC006C43CD /* ProductDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductDetailsViewController.xib; sourceTree = "<group>"; };
 		258AFDFB2949EB17006C43CD /* ProductDetailsViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewModelType.swift; sourceTree = "<group>"; };
 		258AFDFD2949EB20006C43CD /* ProductDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewModel.swift; sourceTree = "<group>"; };
-		258AFE002949F0D3006C43CD /* SystemDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemDesign.swift; sourceTree = "<group>"; };
-		258AFE022949F0EB006C43CD /* SystemDesign+Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SystemDesign+Colors.swift"; sourceTree = "<group>"; };
 		258AFE052949F2DF006C43CD /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		258AFE072949F314006C43CD /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		258AFE092949F331006C43CD /* ProductCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCoordinator.swift; sourceTree = "<group>"; };
@@ -96,8 +90,6 @@
 				258AFDED2949D905006C43CD /* products.json */,
 				258AFDCF2949D215006C43CD /* Delegate */,
 				258AFDD02949D238006C43CD /* Utilities */,
-				258AFDEF2949DE7B006C43CD /* Extension */,
-				258AFDFF2949F0B4006C43CD /* SystemDesign */,
 				258AFE042949F2D5006C43CD /* Coordinator */,
 				258AFDD12949D24A006C43CD /* Scenes */,
 			);
@@ -201,14 +193,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		258AFDEF2949DE7B006C43CD /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				258AFDF02949DE8D006C43CD /* UIImageView.swift */,
-			);
-			path = Extension;
-			sourceTree = "<group>";
-		};
 		258AFDF22949EABF006C43CD /* ProductDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -250,15 +234,6 @@
 				258AFDFD2949EB20006C43CD /* ProductDetailsViewModel.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		258AFDFF2949F0B4006C43CD /* SystemDesign */ = {
-			isa = PBXGroup;
-			children = (
-				258AFE002949F0D3006C43CD /* SystemDesign.swift */,
-				258AFE022949F0EB006C43CD /* SystemDesign+Colors.swift */,
-			);
-			path = SystemDesign;
 			sourceTree = "<group>";
 		};
 		258AFE042949F2D5006C43CD /* Coordinator */ = {
@@ -348,12 +323,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				258AFE032949F0EB006C43CD /* SystemDesign+Colors.swift in Sources */,
 				258AFDE02949D2DE006C43CD /* ProductsViewModelType.swift in Sources */,
 				258AFE062949F2DF006C43CD /* Coordinator.swift in Sources */,
-				258AFE012949F0D3006C43CD /* SystemDesign.swift in Sources */,
 				258AFE082949F314006C43CD /* AppCoordinator.swift in Sources */,
-				258AFDF12949DE8D006C43CD /* UIImageView.swift in Sources */,
 				258AFE0A2949F331006C43CD /* ProductCoordinator.swift in Sources */,
 				258AFDE22949D2ED006C43CD /* ProductsViewModel.swift in Sources */,
 				258AFDF52949EADC006C43CD /* ProductDetailsViewController.swift in Sources */,
