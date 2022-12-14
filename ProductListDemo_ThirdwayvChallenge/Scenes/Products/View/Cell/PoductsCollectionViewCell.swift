@@ -26,4 +26,13 @@ class PoductsCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
+    
+    func Configuration(data: ProductModel) {
+        guard let url = data.image?.url else { return }
+        productImageView.downloaded(from: url)
+        heightOfProductImageViewConstraint.constant = CGFloat(data.image?.height ?? 0)
+        productPriceLabel.text = "\(data.price ?? 0) $"
+        ProductDescriptionLabel.text = data.productDescription
+    }
 }
+

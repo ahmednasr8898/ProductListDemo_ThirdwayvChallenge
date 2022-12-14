@@ -18,8 +18,6 @@ protocol ProductsViewModelInput {
 //MARK: - Actions
 //
 protocol ProductsViewModelOutput {
-    func bindToActivityIndicator(status: @escaping (Bool) -> Void)
-    func bindToErrorResponse(error: @escaping (Error) -> Void)
     func getProductItemCell(indexPath: IndexPath)-> ProductModel
     func getNumberOfProductsCells() -> Int
     func bindToRelaodCollectionView(action: @escaping ()-> Void)

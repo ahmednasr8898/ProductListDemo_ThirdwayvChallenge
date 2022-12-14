@@ -17,6 +17,7 @@ class ProductsViewController: UIViewController {
     //MARK: - varaibles -
     //
     let viewModel: ProductsViewModelType
+    weak var coordinator: ProductCoordinatorProtocol?
     
     //MARK: - init -
     //
@@ -30,8 +31,6 @@ class ProductsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        bindToIndicatorStatus()
-        bindToErrorResponse()
         bindToProductsData()
         setupCollectionView()
     }
@@ -47,19 +46,7 @@ class ProductsViewController: UIViewController {
 extension ProductsViewController {
     private func setupNavigationController() {
         title = "Products List"
-    }
-}
-
-
-//MARK: - bind to Indicator status -
-//
-extension ProductsViewController {
-    private func bindToIndicatorStatus() {
-        viewModel.bindToActivityIndicator { [weak self] status in
-            guard let self = self else { return }
-            print("status", status)
-            Indicator.createIndicator(on: self, start: status)
-        }
+        navigationController?.navigationBar.tintColor = SystemDesign.AppColors.primary.color
     }
 }
 
@@ -71,18 +58,6 @@ extension ProductsViewController {
         viewModel.bindToRelaodCollectionView { [weak self] in
             guard let self = self else { return }
             self.reloadCollectionView()
-        }
-    }
-}
-
-
-//MARK: - bind to Error Response -
-//
-extension ProductsViewController {
-    private func bindToErrorResponse() {
-        viewModel.bindToErrorResponse { [weak self] error in
-            guard let self = self else { return }
-            Alert.failedToFetchResponseAlert(on: self)
         }
     }
 }
@@ -110,6 +85,7 @@ extension ProductsViewController {
     }
 }
 
+
 //MARK: - number of cell -
 //
 extension ProductsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -118,13 +94,14 @@ extension ProductsViewController: UICollectionViewDelegate, UICollectionViewData
     }
 }
 
+
 //MARK: - dequeue cell -
 //
 extension ProductsViewController {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PoductsCollectionViewCell.Identifier, for: indexPath) as! PoductsCollectionViewCell
-//        let data = self.arrOfApprovalRequestData[indexPath.row]
-//        cell.configration(data: data)
+        
+        cell.Configuration(data: viewModel.getProductItemCell(indexPath: indexPath))
         return cell
     }
 }
@@ -134,18 +111,30 @@ extension ProductsViewController {
 //
 extension ProductsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.view.frame.width * ( 175 / 375), height: 220)
+        let heightOfImage = CGFloat(viewModel.getProductItemCell(indexPath: indexPath).image?.height ?? 0)
+        let heightOfCell = heightOfImage + 100
+        
+        return CGSize(width: self.view.frame.width * 0.481 , height: heightOfCell)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 16
+        return 0
+    }
+}
+
+
+//MARK: - did select item -
+//
+extension ProductsViewController {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        coordinator?.showProductDetails(product: viewModel.getProductItemCell(indexPath: indexPath))
     }
 }

@@ -9,8 +9,6 @@ import Foundation
 
 
 class ProductsViewModel {
-    private var activityIndicatorStatus: (Bool) -> Void = { _ in}
-    private var errorResponse: (Error) -> Void = { _ in }
     
     private var bindToReloadCollectionViewClosure: (() -> Void)?
     private var products: [ProductModel] = [] {
@@ -33,14 +31,6 @@ extension ProductsViewModel: ProductsViewModelInput {
 //MARK: - ProductsViewModel Output
 //
 extension ProductsViewModel: ProductsViewModelOutput {
-    func bindToActivityIndicator(status: @escaping (Bool) -> Void) {
-        activityIndicatorStatus = status
-    }
-    
-    func bindToErrorResponse(error: @escaping (Error) -> Void) {
-        errorResponse = error
-    }
-    
     func getProductItemCell(indexPath: IndexPath) -> ProductModel {
         return products[indexPath.row]
     }
@@ -54,15 +44,13 @@ extension ProductsViewModel: ProductsViewModelOutput {
     }
     
     func fetchProducts() {
-        activityIndicatorStatus(true)
         guard let productsURL = Bundle.main.url(forResource: "products", withExtension: "json") else { return }
-        activityIndicatorStatus(false)
         do {
             let data = try Data(contentsOf: productsURL)
             let productsData = try JSONDecoder().decode([ProductModel].self, from: data)
             products = productsData
         } catch let error {
-            errorResponse(error)
+            print(error)
         }
     }
 }
