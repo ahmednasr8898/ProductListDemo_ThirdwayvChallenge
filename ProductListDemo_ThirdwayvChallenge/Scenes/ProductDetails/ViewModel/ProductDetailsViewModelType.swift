@@ -10,11 +10,11 @@ import Foundation
 
 typealias ProductDetailsViewModelType = ProductDetailsViewModelInput & ProductDetailsViewModelOutput
 
-//MARK: - Updates
+//MARK: - Updates -
 //
 protocol  ProductDetailsViewModelInput { }
 
-//MARK: - Actions
+//MARK: - Actions -
 //
 protocol  ProductDetailsViewModelOutput {
     func getProductImageURl() -> String

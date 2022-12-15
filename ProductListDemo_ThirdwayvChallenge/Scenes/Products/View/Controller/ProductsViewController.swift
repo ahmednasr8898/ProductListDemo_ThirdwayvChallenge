@@ -18,6 +18,7 @@ class ProductsViewController: UIViewController {
     //
     let viewModel: ProductsViewModelType
     weak var coordinator: ProductCoordinatorProtocol?
+    var isFetchingDataNow: Bool?
     
     //MARK: - init -
     //
@@ -36,6 +37,7 @@ class ProductsViewController: UIViewController {
         delegatePinterestLayout()
         bindToIndicatorStatus()
         bindToProductsData()
+        bindToIsFetchingDataNow()
         bindToErrorService()
         setupCollectionView()
     }
@@ -45,6 +47,7 @@ class ProductsViewController: UIViewController {
         setupNavigationController()
     }
 }
+
 
 //MARK: - navigation controller -
 //
@@ -56,7 +59,7 @@ extension ProductsViewController {
 }
 
 
-//MARK: - bind to Indicator status
+//MARK: - bind to Indicator status -
 //
 extension ProductsViewController {
     private func bindToIndicatorStatus() {
@@ -83,7 +86,19 @@ extension ProductsViewController {
 }
 
 
-//MARK: - bind to ErrorService
+//MARK: - bind to is fetching data now Data -
+//
+extension ProductsViewController {
+    private func bindToIsFetchingDataNow() {
+        viewModel.bindToIsFetchingDataNow { [weak self] isFetching in
+            guard let self = self else { return }
+            self.isFetchingDataNow = isFetching
+        }
+    }
+}
+
+
+//MARK: - bind to ErrorService -
 //
 extension ProductsViewController {
     private func bindToErrorService() {
@@ -117,6 +132,7 @@ extension ProductsViewController {
         productsCollectionView.register(PoductsCollectionViewCell.nib(), forCellWithReuseIdentifier: PoductsCollectionViewCell.identifier)
         productsCollectionView.delegate = self
         productsCollectionView.dataSource = self
+        productsCollectionView.prefetchDataSource = self
     }
 }
 
@@ -182,3 +198,15 @@ extension ProductsViewController {
 }
 
 
+//MARK: - pagination when scrolling with prefetching -
+//
+extension ProductsViewController: UICollectionViewDataSourcePrefetching {
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        for indexPath in indexPaths {
+            guard let isFetchingDataNow = isFetchingDataNow else {return}
+            if indexPath.row >= viewModel.getNumberOfProductsCells() - 3 && !isFetchingDataNow {
+                viewModel.fetchProducts()
+            }
+        }
+    }
+}

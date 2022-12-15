@@ -18,13 +18,13 @@ class ProductDetailsViewModel {
 }
 
 
-//MARK: - ProductDetailsViewModel Input
+//MARK: - ProductDetailsViewModel Input -
 //
 extension ProductDetailsViewModel: ProductDetailsViewModelInput {
     
 }
 
-//MARK: - ProductDetailsViewModel Output
+//MARK: - ProductDetailsViewModel Output -
 //
 extension ProductDetailsViewModel: ProductDetailsViewModelOutput {
     func getProductImageURl() -> String {
