@@ -7,6 +7,7 @@
 
 import UIKit
 import UIStyle
+import Networking
 
 class PoductsCollectionViewCell: UICollectionViewCell {
     
@@ -20,8 +21,8 @@ class PoductsCollectionViewCell: UICollectionViewCell {
     
     //MARK: - variable
     //
-    static let Identifier = "PoductsCollectionViewCell"
-    static func Nib() -> UINib {
+    static let identifier = "PoductsCollectionViewCell"
+    static func nib() -> UINib {
         return UINib(nibName: "PoductsCollectionViewCell", bundle: nil)
     }
     
@@ -35,13 +36,13 @@ class PoductsCollectionViewCell: UICollectionViewCell {
         subView.layer.borderColor = UIColor.gray.cgColor
     }
     
-    func Configuration(data: ProductModel) {
+    func Configuration(data: Product) {
         ConfigurationImageView(data: data)
         productPriceLabel.text = "\(data.price ?? 0) $"
         ProductDescriptionLabel.text = data.productDescription
     }
     
-    private func ConfigurationImageView(data: ProductModel) {
+    private func ConfigurationImageView(data: Product) {
         guard let url = data.image?.url else { return }
         productImageView.downloaded(from: url)
         heightOfProductImageViewConstraint.constant = CGFloat(data.image?.height ?? 0)

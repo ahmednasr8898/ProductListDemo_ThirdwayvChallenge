@@ -9,11 +9,11 @@ import UIKit
 import UIStyle
 
 class ProductsViewController: UIViewController {
-
+    
     //MARK: - outlets
     //
     @IBOutlet weak var productsCollectionView: UICollectionView!
-   
+    
     //MARK: - varaibles -
     //
     let viewModel: ProductsViewModelType
@@ -29,12 +29,14 @@ class ProductsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - life cycel -
+    //
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let layout = productsCollectionView?.collectionViewLayout as? PinterestLayout {
-          layout.delegate = self
-        }
+        delegatePinterestLayout()
+        bindToIndicatorStatus()
         bindToProductsData()
+        bindToErrorService()
         setupCollectionView()
     }
     
@@ -54,6 +56,21 @@ extension ProductsViewController {
 }
 
 
+//MARK: - bind to Indicator status
+//
+extension ProductsViewController {
+    private func bindToIndicatorStatus() {
+        viewModel.bindToActivityIndicator { [weak self] status in
+            guard let self = self else { return }
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                Indicator.createIndicator(on: self, start: status)
+            }
+        }
+    }
+}
+
+
 //MARK: - bind to products data -
 //
 extension ProductsViewController {
@@ -61,6 +78,21 @@ extension ProductsViewController {
         viewModel.bindToRelaodCollectionView { [weak self] in
             guard let self = self else { return }
             self.reloadCollectionView()
+        }
+    }
+}
+
+
+//MARK: - bind to ErrorService
+//
+extension ProductsViewController {
+    private func bindToErrorService() {
+        viewModel.bindToErrorService { [weak self] error in
+            guard let self = self else { return }
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                Alert.failedToConnectWithServerAlert(on: self)
+            }
         }
     }
 }
@@ -82,7 +114,7 @@ extension ProductsViewController {
 //
 extension ProductsViewController {
     private func setupCollectionView() {
-        productsCollectionView.register(PoductsCollectionViewCell.Nib(), forCellWithReuseIdentifier: PoductsCollectionViewCell.Identifier)
+        productsCollectionView.register(PoductsCollectionViewCell.nib(), forCellWithReuseIdentifier: PoductsCollectionViewCell.identifier)
         productsCollectionView.delegate = self
         productsCollectionView.dataSource = self
     }
@@ -102,7 +134,7 @@ extension ProductsViewController: UICollectionViewDelegate, UICollectionViewData
 //
 extension ProductsViewController {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PoductsCollectionViewCell.Identifier, for: indexPath) as! PoductsCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PoductsCollectionViewCell.identifier, for: indexPath) as! PoductsCollectionViewCell
         cell.Configuration(data: viewModel.getProductItemCell(indexPath: indexPath))
         return cell
     }
@@ -118,9 +150,16 @@ extension ProductsViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+
 //MARK: - confirm PinterestLayout Delegate -
 //
 extension ProductsViewController: PinterestLayoutDelegate {
+    private func delegatePinterestLayout() {
+        if let layout = productsCollectionView?.collectionViewLayout as? PinterestLayout {
+            layout.delegate = self
+        }
+    }
+    
     func collectionView( _ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
         
         let width = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right)) / 2
@@ -132,6 +171,7 @@ extension ProductsViewController: PinterestLayoutDelegate {
         return  height
     }
 }
+
 
 //MARK: - did selected item -
 //

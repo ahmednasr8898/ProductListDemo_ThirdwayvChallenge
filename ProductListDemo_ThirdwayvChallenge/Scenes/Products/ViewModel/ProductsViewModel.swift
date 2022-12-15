@@ -6,12 +6,15 @@
 //
 
 import Foundation
-
+import Networking
 
 class ProductsViewModel {
+    private let productsRepository: ProductRepositoryProtocol = ProductRepository()
     
+    private var activityIndicatorStatus: (Bool) -> Void = { _ in}
+    private var errorService: (Error) -> Void = { _ in }
     private var bindToReloadCollectionViewClosure: (() -> Void)?
-    private var products: [ProductModel] = [] {
+    private var products: [Product] = [] {
         didSet {
             bindToReloadCollectionViewClosure?()
         }
@@ -31,7 +34,15 @@ extension ProductsViewModel: ProductsViewModelInput {
 //MARK: - ProductsViewModel Output
 //
 extension ProductsViewModel: ProductsViewModelOutput {
-    func getProductItemCell(indexPath: IndexPath) -> ProductModel {
+    func bindToActivityIndicator(activityIndicatorStatus: @escaping (Bool) -> Void) {
+        self.activityIndicatorStatus = activityIndicatorStatus
+    }
+    
+    func bindToErrorService(error: @escaping (Error) -> Void) {
+        errorService = error
+    }
+    
+    func getProductItemCell(indexPath: IndexPath) -> Product {
         return products[indexPath.row]
     }
     
@@ -44,13 +55,18 @@ extension ProductsViewModel: ProductsViewModelOutput {
     }
     
     func fetchProducts() {
-        guard let productsURL = Bundle.main.url(forResource: "products", withExtension: "json") else { return }
-        do {
-            let data = try Data(contentsOf: productsURL)
-            let productsData = try JSONDecoder().decode([ProductModel].self, from: data)
-            products = productsData
-        } catch let error {
-            print(error)
+        productsRepository.fetchAllProducts { [weak self] result in
+            guard let self = self else { return }
+            self.activityIndicatorStatus(true)
+            
+            switch result {
+            case .success(let data):
+                guard let products = data?.products else { return }
+                self.products = products
+            case .failure(let error):
+                self.errorService(error)
+            }
+            self.activityIndicatorStatus(false)
         }
     }
 }

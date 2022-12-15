@@ -6,13 +6,13 @@
 //
 
 import Foundation
-
+import Networking
 
 class ProductDetailsViewModel {
     
-    let product: ProductModel
+    let product: Product
     
-    init(product: ProductModel) {
+    init(product: Product) {
         self.product = product
     }
 }

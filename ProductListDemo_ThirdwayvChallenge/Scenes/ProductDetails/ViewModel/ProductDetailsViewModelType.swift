@@ -12,9 +12,7 @@ typealias ProductDetailsViewModelType = ProductDetailsViewModelInput & ProductDe
 
 //MARK: - Updates
 //
-protocol  ProductDetailsViewModelInput {
-    
-}
+protocol  ProductDetailsViewModelInput { }
 
 //MARK: - Actions
 //

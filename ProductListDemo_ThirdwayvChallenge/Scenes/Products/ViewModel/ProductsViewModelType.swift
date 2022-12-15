@@ -6,19 +6,21 @@
 //
 
 import Foundation
+import Networking
+
 
 typealias ProductsViewModelType = ProductsViewModelInput & ProductsViewModelOutput
 
 //MARK: - Updates
 //
-protocol ProductsViewModelInput {
-    
-}
+protocol ProductsViewModelInput { }
 
 //MARK: - Actions
 //
 protocol ProductsViewModelOutput {
-    func getProductItemCell(indexPath: IndexPath)-> ProductModel
+    func bindToActivityIndicator(activityIndicatorStatus: @escaping (Bool) -> Void)
+    func bindToErrorService(error: @escaping (Error) -> Void)
+    func getProductItemCell(indexPath: IndexPath)-> Product
     func getNumberOfProductsCells() -> Int
     func bindToRelaodCollectionView(action: @escaping ()-> Void)
     func fetchProducts()
