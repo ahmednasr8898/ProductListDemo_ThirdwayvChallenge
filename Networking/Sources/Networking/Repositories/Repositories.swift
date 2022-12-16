@@ -12,7 +12,7 @@ public protocol RepositoriesProtocol {
 }
 
 public class Repositories {
-    private let productsRepository: ProductAPIProtocol = ProductAPI()
+    private let productsAPI: ProductAPIProtocol = ProductAPI()
     public init() {}
 }
 
@@ -20,7 +20,7 @@ public class Repositories {
 //
 extension Repositories: RepositoriesProtocol {
     public func fetchProducts(complection: @escaping (ProductListModel?, Error?)-> Void) {
-        productsRepository.fetchAllProducts { result in
+        productsAPI.fetchAllProducts { result in
             
             switch result {
             case .success(let data):

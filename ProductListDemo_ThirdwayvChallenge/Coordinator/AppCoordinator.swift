@@ -18,7 +18,7 @@ class AppCoordinator: Coordinator {
     }
     
     func start() {
-        presentProductCoordinator()
+        presentSplashScreenCoordinator()
     }
 }
 
@@ -28,6 +28,15 @@ extension AppCoordinator {
         children.removeAll()
         startCoordinator(productCoordinator)
         replaceWindowRootViewController(productCoordinator.navigationController)
+    }
+    
+    private func presentSplashScreenCoordinator() {
+        let splashCoordinator = SplashCoordinator { [weak self] in
+            self?.presentProductCoordinator()
+        }
+        children.removeAll()
+        startCoordinator(splashCoordinator)
+        replaceWindowRootViewController(splashCoordinator.navigationController)
     }
 }
 

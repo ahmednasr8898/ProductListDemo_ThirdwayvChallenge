@@ -19,7 +19,8 @@ class ProductsViewController: UIViewController {
     let viewModel: ProductsViewModelType
     weak var coordinator: ProductCoordinatorProtocol?
     var isFetchingDataNow: Bool?
-    
+    let reachability = try! Reachability()
+
     //MARK: - init -
     //
     init(viewModel: ProductsViewModelType) {
@@ -45,6 +46,11 @@ class ProductsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationController()
+        bindToReachability()
+    }
+    
+    deinit {
+        reachability.stopNotifier()
     }
 }
 
@@ -106,8 +112,21 @@ extension ProductsViewController {
             guard let self = self else { return }
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
-                Alert.failedToConnectWithServerAlert(on: self)
+                Alert.defaultAlert(on: self, message: "Failed to connect with server and no found data offline!!!!")
             }
+        }
+    }
+}
+
+
+//MARK: - bind to reachability
+//
+extension ProductsViewController {
+    private func bindToReachability() {
+        HelperReachability.shared.handleReachability(reachability: reachability)
+        HelperReachability.shared.bindToReachabilityStatus = { [ weak self] in
+            guard let self = self else { return }
+            self.viewModel.fetchProducts()
         }
     }
 }
