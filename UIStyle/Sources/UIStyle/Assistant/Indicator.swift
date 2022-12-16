@@ -14,7 +14,7 @@ public struct Indicator {
     @available(iOS 13.0, *)
     public static func createIndicator(on vc: UIViewController, start: Bool) {
         indicator.center = vc.view.center
-        indicator.color = .red
+        indicator.color = .blue
         vc.view.addSubview(indicator)
         if start {
             indicator.startAnimating()
