@@ -10,10 +10,15 @@ import UIStyle
 
 class ProductDetailsViewController: UIViewController {
 
+    //MARK: - Constraints -
+    //
+    @IBOutlet weak var heightOfProductImageViewConstraint: NSLayoutConstraint!
+    @IBOutlet weak var heightOfDescriptionViewConstraint: NSLayoutConstraint!
+    
     //MARK: - outlets -
     //
     @IBOutlet weak var productImageView: UIImageView!
-    @IBOutlet weak var productPriceLabel: UILabel!
+    @IBOutlet weak var productDescriptionLabel: UILabel!
     
     //MARK: - variables -
     //
@@ -34,8 +39,28 @@ class ProductDetailsViewController: UIViewController {
     //
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupDesignForProductImageView()
+        setupConstraintsForProductImageView()
         setProductImage()
-        setProductPrice()
+        setProductDescription()
+    }
+}
+
+
+//MARK: - setup Design For Product ImageView -
+//
+extension ProductDetailsViewController {
+    private func setupDesignForProductImageView() {
+        productImageView.layer.cornerRadius = 8
+    }
+}
+
+
+//MARK: - setup constraint For Product ImageView -
+//
+extension ProductDetailsViewController {
+    private func setupConstraintsForProductImageView() {
+        heightOfProductImageViewConstraint.constant = view.frame.height * 0.6
     }
 }
 
@@ -49,10 +74,16 @@ extension ProductDetailsViewController {
 }
 
 
-//MARK: - set product price -
+//MARK: - set product Description -
 //
 extension ProductDetailsViewController {
-    private func setProductPrice() {
-        productPriceLabel.text = viewModel.getProductPrice()
+    private func setProductDescription() {
+        productDescriptionLabel.text = viewModel.getProductDescription()
+        setupHeightOfDescriptionView()
+    }
+    
+    private func setupHeightOfDescriptionView() {
+        productDescriptionLabel.sizeToFit()
+        heightOfDescriptionViewConstraint.constant = productDescriptionLabel.frame.height + 40
     }
 }

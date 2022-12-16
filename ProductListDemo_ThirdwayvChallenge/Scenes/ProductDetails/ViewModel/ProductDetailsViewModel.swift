@@ -32,9 +32,8 @@ extension ProductDetailsViewModel: ProductDetailsViewModelOutput {
         return url
     }
     
-    func getProductPrice() -> String {
-        guard let price = product.price else { return "" }
-        let priceStr = String(price)
-        return priceStr + "$"
+    func getProductDescription() -> String {
+        guard let description = product.productDescription else { return "" }
+        return description
     }
 }

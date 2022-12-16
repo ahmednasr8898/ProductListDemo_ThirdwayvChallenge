@@ -11,11 +11,14 @@ import Networking
 
 class PoductsCollectionViewCell: UICollectionViewCell {
     
+    //MARK: - constraints
+    //
+    @IBOutlet weak var heightOfProductImageViewConstraint: NSLayoutConstraint!
+    
     //MARK: - outlets
     //
     @IBOutlet weak var subView: UIView!
     @IBOutlet weak var productImageView: UIImageView!
-    @IBOutlet weak var heightOfProductImageViewConstraint: NSLayoutConstraint!
     @IBOutlet weak var productPriceLabel: UILabel!
     @IBOutlet weak var ProductDescriptionLabel: UILabel!
     

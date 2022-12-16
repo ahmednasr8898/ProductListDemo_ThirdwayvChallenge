@@ -18,5 +18,5 @@ protocol  ProductDetailsViewModelInput { }
 //
 protocol  ProductDetailsViewModelOutput {
     func getProductImageURl() -> String
-    func getProductPrice() -> String
+    func getProductDescription() -> String
 }
