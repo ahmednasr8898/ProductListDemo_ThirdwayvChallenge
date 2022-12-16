@@ -7,16 +7,16 @@
 
 import Foundation
 
-public protocol ProductRepositoryProtocol {
+public protocol ProductAPIProtocol {
     func fetchAllProducts(complection: @escaping (Result<ProductListModel?, Error>) -> Void)
 }
 
-public class ProductRepository: BaseAPI<ProductTarget>, ProductRepositoryProtocol {
+public class ProductAPI: BaseAPI<ProductTarget>, ProductAPIProtocol {
     public override init() {}
     
 }
 
-extension ProductRepository {
+extension ProductAPI {
     public func fetchAllProducts(complection: @escaping (Result<ProductListModel?, Error>) -> Void) {
         connectWithServer(target: .allProducts) { result in
             complection(result)

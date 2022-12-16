@@ -9,7 +9,7 @@ import Foundation
 import Networking
 
 class ProductsViewModel {
-    private let productsRepository: ProductRepositoryProtocol = ProductRepository()
+    private let repository: RepositoriesProtocol = Repositories()
     
     private var activityIndicatorStatus: (Bool) -> Void = { _ in}
     private var errorService: (Error) -> Void = { _ in }
@@ -61,18 +61,19 @@ extension ProductsViewModel: ProductsViewModelOutput {
     
     func fetchProducts() {
         isFetchingDataNow(true)
+        self.activityIndicatorStatus(true)
         
-        productsRepository.fetchAllProducts { [weak self] result in
+        repository.fetchProducts { [weak self] productListModel, error in
             guard let self = self else { return }
-            self.activityIndicatorStatus(true)
             
-            switch result {
-            case .success(let data):
-                guard let arrOfProduct = data?.products else { return }
+            if let productListModel = productListModel {
+                guard let arrOfProduct = productListModel.products else { return }
                 self.products.append(contentsOf: arrOfProduct)
-            case .failure(let error):
-                self.errorService(error)
             }
+            else {
+                self.errorService(error!)
+            }
+            
             self.activityIndicatorStatus(false)
             self.isFetchingDataNow(false)
         }
