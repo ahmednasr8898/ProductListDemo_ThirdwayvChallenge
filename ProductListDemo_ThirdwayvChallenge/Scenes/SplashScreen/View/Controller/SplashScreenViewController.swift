@@ -36,7 +36,7 @@ extension SplashScreenViewController {
         
         for letter in title {
             
-            Timer.scheduledTimer(withTimeInterval: 0.2 * charIndex, repeats: false) { [weak self] timer in
+            Timer.scheduledTimer(withTimeInterval: 0.25 * charIndex, repeats: false) { [weak self] timer in
                 guard let self = self else {return}
                 self.splashTextLabel.text?.append(letter)
             }
