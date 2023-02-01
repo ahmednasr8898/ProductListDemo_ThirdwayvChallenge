@@ -119,7 +119,7 @@ extension ProductsViewController {
 }
 
 
-//MARK: - bind to reachability
+//MARK: - bind to reachability -
 //
 extension ProductsViewController {
     private func bindToReachability() {
@@ -198,11 +198,11 @@ extension ProductsViewController: PinterestLayoutDelegate {
     func collectionView( _ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
         
         let width = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right)) / 2
-        let productDescription = viewModel.getProductItemCell(indexPath: indexPath).productDescription
+        let productDescription = viewModel.getProductItemCell(indexPath: indexPath).description
         
         let productDescriptionHeight = productDescription?.heightWithConstrainedWidth(width: width, font: .systemFont(ofSize: 16))
         
-        let height = CGFloat(viewModel.getProductItemCell(indexPath: indexPath).image?.height ?? 0) + productDescriptionHeight! + 100
+        let height = CGFloat(viewModel.getProductItemCell(indexPath: indexPath).imageHeight ?? 0) + productDescriptionHeight! + 100
         return  height
     }
 }

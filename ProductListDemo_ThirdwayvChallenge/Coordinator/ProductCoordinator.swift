@@ -6,11 +6,11 @@
 //
 
 import UIKit
-import Networking
+import Domain
 
 protocol ProductCoordinatorProtocol: AnyObject {
     func showProductList()
-    func showProductDetails(product: Product)
+    func showProductDetails(product: Domain.Product)
 }
 
 
@@ -34,7 +34,7 @@ extension ProductCoordinator: ProductCoordinatorProtocol {
         show(viewController: productsViewController)
     }
     
-    func showProductDetails(product: Product) {
+    func showProductDetails(product: Domain.Product) {
         let viewModel = ProductDetailsViewModel(product: product)
         let productDetailsViewController = ProductDetailsViewController(viewModel: viewModel)
         productDetailsViewController.coordinator = self

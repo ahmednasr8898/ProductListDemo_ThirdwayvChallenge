@@ -6,16 +6,17 @@
 //
 
 import Foundation
-import Networking
+import Domain
+import Core
 
 class ProductsViewModel {
-    private let repository: RepositoriesProtocol = Repositories()
+    let productRepository = ProductRepository()
     
     private var activityIndicatorStatus: (Bool) -> Void = { _ in}
     private var errorService: (Error) -> Void = { _ in }
     private var isFetchingDataNow: (Bool) -> Void = { _ in }
     private var bindToReloadCollectionViewClosure: (() -> Void)?
-    private var products: [Product] = [] {
+    private var products: [Domain.Product] = [] {
         didSet {
             bindToReloadCollectionViewClosure?()
         }
@@ -63,17 +64,15 @@ extension ProductsViewModel: ProductsViewModelOutput {
         isFetchingDataNow(true)
         self.activityIndicatorStatus(true)
         
-        repository.fetchProducts { [weak self] productListModel, error in
+        productRepository.fetchProducts { [weak self] result in
             guard let self = self else { return }
-            
-            if let productListModel = productListModel {
-                guard let arrOfProduct = productListModel.products else { return }
-                self.products.append(contentsOf: arrOfProduct)
+            switch result {
+            case .success(let list):
+                self.products.append(contentsOf: list)
+            case .failure(let error):
+                print("errorr", error.localizedDescription)
+                self.errorService(error)
             }
-            else {
-                self.errorService(error!)
-            }
-            
             self.activityIndicatorStatus(false)
             self.isFetchingDataNow(false)
         }

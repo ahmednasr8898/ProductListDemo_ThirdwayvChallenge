@@ -6,13 +6,13 @@
 //
 
 import Foundation
-import Networking
+import Domain
 
 class ProductDetailsViewModel {
     
     let product: Product
     
-    init(product: Product) {
+    init(product: Domain.Product) {
         self.product = product
     }
 }
@@ -28,12 +28,12 @@ extension ProductDetailsViewModel: ProductDetailsViewModelInput {
 //
 extension ProductDetailsViewModel: ProductDetailsViewModelOutput {
     func getProductImageURl() -> String {
-        guard let url = product.image?.url else { return "" }
+        guard let url = product.image else { return "" }
         return url
     }
     
     func getProductDescription() -> String {
-        guard let description = product.productDescription else { return "" }
+        guard let description = product.description else { return "" }
         return description
     }
 }

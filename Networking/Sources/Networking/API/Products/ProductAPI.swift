@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol ProductAPIProtocol {
-    func fetchAllProducts(complection: @escaping (Result<ProductListModel?, Error>) -> Void)
+    func fetchProducts(complection: @escaping (Result<Products?, Error>) -> Void)
 }
 
 public class ProductAPI: BaseAPI<ProductTarget>, ProductAPIProtocol {
@@ -17,7 +17,7 @@ public class ProductAPI: BaseAPI<ProductTarget>, ProductAPIProtocol {
 }
 
 extension ProductAPI {
-    public func fetchAllProducts(complection: @escaping (Result<ProductListModel?, Error>) -> Void) {
+    public func fetchProducts(complection: @escaping (Result<Products?, Error>) -> Void) {
         connectWithServer(target: .allProducts) { result in
             complection(result)
         }

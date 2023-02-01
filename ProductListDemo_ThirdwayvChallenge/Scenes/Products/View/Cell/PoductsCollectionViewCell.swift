@@ -7,7 +7,7 @@
 
 import UIKit
 import UIStyle
-import Networking
+import Domain
 
 class PoductsCollectionViewCell: UICollectionViewCell {
     
@@ -39,16 +39,16 @@ class PoductsCollectionViewCell: UICollectionViewCell {
         subView.layer.borderColor = UIColor.gray.cgColor
     }
     
-    func Configuration(data: Product) {
+    func Configuration(data: Domain.Product) {
         ConfigurationImageView(data: data)
         productPriceLabel.text = "\(data.price ?? 0) $"
-        ProductDescriptionLabel.text = data.productDescription
+        ProductDescriptionLabel.text = data.description
     }
     
-    private func ConfigurationImageView(data: Product) {
-        guard let url = data.image?.url else { return }
+    private func ConfigurationImageView(data: Domain.Product) {
+        guard let url = data.image else { return }
         productImageView.downloaded(from: url)
-        heightOfProductImageViewConstraint.constant = CGFloat(data.image?.height ?? 0)
+        heightOfProductImageViewConstraint.constant = CGFloat(data.imageHeight ?? 0)
     }
 }
 

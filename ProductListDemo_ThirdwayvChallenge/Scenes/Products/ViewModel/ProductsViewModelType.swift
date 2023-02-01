@@ -6,8 +6,7 @@
 //
 
 import Foundation
-import Networking
-
+import Domain
 
 typealias ProductsViewModelType = ProductsViewModelInput & ProductsViewModelOutput
 
@@ -21,7 +20,7 @@ protocol ProductsViewModelOutput {
     func bindToActivityIndicator(activityIndicatorStatus: @escaping (Bool) -> Void)
     func bindToErrorService(error: @escaping (Error) -> Void)
     func bindToIsFetchingDataNow(isFetching: @escaping (Bool) -> Void)
-    func getProductItemCell(indexPath: IndexPath)-> Product
+    func getProductItemCell(indexPath: IndexPath)-> Domain.Product
     func getNumberOfProductsCells() -> Int
     func bindToRelaodCollectionView(action: @escaping ()-> Void)
     func fetchProducts()

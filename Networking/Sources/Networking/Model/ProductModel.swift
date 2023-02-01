@@ -7,10 +7,11 @@
 
 import Foundation
 
-// MARK: - ProductListModel
-public struct ProductListModel: Codable {
-    public let products: [Product]?
-}
+//// MARK: - ProductListModel
+//public struct ProductListModel: Codable {
+//    public let products: [Product]?
+//}
+public typealias Products = [Product]
 
 // MARK: - Product
 public struct Product: Codable {

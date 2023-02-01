@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -32,6 +32,9 @@
 		25E4DE1B294CBEBE00A8D685 /* SplashCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E4DE1A294CBEBE00A8D685 /* SplashCoordinator.swift */; };
 		25E4DE1F294CBF3200A8D685 /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E4DE1D294CBF3200A8D685 /* SplashScreenViewController.swift */; };
 		25E4DE20294CBF3200A8D685 /* SplashScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25E4DE1E294CBF3200A8D685 /* SplashScreenViewController.xib */; };
+		79BA149F29622CB800A7FBEE /* Domain in Frameworks */ = {isa = PBXBuildFile; productRef = 79BA149E29622CB800A7FBEE /* Domain */; };
+		79BA14A129622CBC00A7FBEE /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 79BA14A029622CBC00A7FBEE /* Core */; };
+		79BA14A329622CC000A7FBEE /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = 79BA14A229622CC000A7FBEE /* Storage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +65,9 @@
 		25E4DE1A294CBEBE00A8D685 /* SplashCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashCoordinator.swift; sourceTree = "<group>"; };
 		25E4DE1D294CBF3200A8D685 /* SplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
 		25E4DE1E294CBF3200A8D685 /* SplashScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashScreenViewController.xib; sourceTree = "<group>"; };
+		79BA149B296222F600A7FBEE /* Domain */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Domain; sourceTree = "<group>"; };
+		79BA149C296223E100A7FBEE /* Core */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Core; sourceTree = "<group>"; };
+		79BA149D296228EF00A7FBEE /* Storage */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Storage; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +75,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79BA149F29622CB800A7FBEE /* Domain in Frameworks */,
+				79BA14A129622CBC00A7FBEE /* Core in Frameworks */,
 				25085E04294B0E410038B0C0 /* Networking in Frameworks */,
+				79BA14A329622CC000A7FBEE /* Storage in Frameworks */,
 				258AFDE82949D833006C43CD /* UIStyle in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -89,7 +98,10 @@
 		258AFDAF2949D1D6006C43CD = {
 			isa = PBXGroup;
 			children = (
+				79BA149B296222F600A7FBEE /* Domain */,
+				79BA149C296223E100A7FBEE /* Core */,
 				258AFE0F294A1941006C43CD /* Networking */,
+				79BA149D296228EF00A7FBEE /* Storage */,
 				258AFDE52949D75A006C43CD /* UIStyle */,
 				258AFDBA2949D1D7006C43CD /* ProductListDemo_ThirdwayvChallenge */,
 				258AFDB92949D1D7006C43CD /* Products */,
@@ -329,6 +341,9 @@
 			packageProductDependencies = (
 				258AFDE72949D833006C43CD /* UIStyle */,
 				25085E03294B0E410038B0C0 /* Networking */,
+				79BA149E29622CB800A7FBEE /* Domain */,
+				79BA14A029622CBC00A7FBEE /* Core */,
+				79BA14A229622CC000A7FBEE /* Storage */,
 			);
 			productName = ProductListDemo_ThirdwayvChallenge;
 			productReference = 258AFDB82949D1D7006C43CD /* ProductListDemo_ThirdwayvChallenge.app */;
@@ -350,7 +365,7 @@
 				};
 			};
 			buildConfigurationList = 258AFDB32949D1D6006C43CD /* Build configuration list for PBXProject "ProductListDemo_ThirdwayvChallenge" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 11.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -629,6 +644,18 @@
 		258AFDE72949D833006C43CD /* UIStyle */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = UIStyle;
+		};
+		79BA149E29622CB800A7FBEE /* Domain */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Domain;
+		};
+		79BA14A029622CBC00A7FBEE /* Core */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Core;
+		};
+		79BA14A229622CC000A7FBEE /* Storage */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Storage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
